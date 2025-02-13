@@ -95,6 +95,7 @@ public class Main {
                 {
                     case 1 -> {
                         bytecypher.Compressor.compress();
+                        // break;
                         pause(2);
                     }
                     case 2 -> {
