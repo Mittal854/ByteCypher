@@ -165,7 +165,7 @@ public class Compressor {
             // For already compressed files, just store as is
             compressedData = fileBytes;
             compressionMethod = "store";
-            System.out.println("Storing already compressed file: " + file.getName());
+            // System.out.println("Storing already compressed file: " + file.getName());
         } else if (isTextFile(fileExtension)) {
             // Use Huffman for text files
             HuffmanCompression huffman = new HuffmanCompression();
@@ -175,10 +175,10 @@ public class Compressor {
             if (compressedData.length > fileBytes.length * 0.9) {
                 compressedData = LZ77.compress(fileBytes);
                 compressionMethod = "lz77";
-                System.out.println("Using LZ77 compression for: " + file.getName());
+                // System.out.println("Using LZ77 compression for: " + file.getName());
             } else {
                 compressionMethod = "huffman";
-                System.out.println("Using Huffman compression for: " + file.getName());
+                // System.out.println("Using Huffman compression for: " + file.getName());
             }
         } else if (isBinaryFile(fileExtension)) {
             // Use LZ77 for binary files
@@ -188,10 +188,10 @@ public class Compressor {
             if (compressedData.length > fileBytes.length * 0.95) {
                 compressedData = fileBytes;
                 compressionMethod = "store";
-                System.out.println("Storing incompressible file: " + file.getName());
+                // System.out.println("Storing incompressible file: " + file.getName());
             } else {
                 compressionMethod = "lz77";
-                System.out.println("Using LZ77 compression for: " + file.getName());
+                // System.out.println("Using LZ77 compression for: " + file.getName());
             }
         } else {
             // For unknown files, try RLE which is better for binary data with repetition
@@ -205,16 +205,16 @@ public class Compressor {
                 if (lz77Data.length < compressedData.length && lz77Data.length < fileBytes.length * 0.95) {
                     compressedData = lz77Data;
                     compressionMethod = "lz77";
-                    System.out.println("Using LZ77 compression for: " + file.getName());
+                    // System.out.println("Using LZ77 compression for: " + file.getName());
                 } else {
                     // If nothing works well, just store
                     compressedData = fileBytes;
                     compressionMethod = "store";
-                    System.out.println("Storing incompressible file: " + file.getName());
+                    // System.out.println("Storing incompressible file: " + file.getName());
                 }
             } else {
                 compressionMethod = "rle";
-                System.out.println("Using RLE compression for: " + file.getName());
+                // System.out.println("Using RLE compression for: " + file.getName());
             }
         }
 
